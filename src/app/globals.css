@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*! App */
+
+* {
+  padding: auto;
+}
+
+/*! Scrollbar */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2d1950;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b279d8f5;
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #de82ebe8;
+  border-radius: 12px;
+}
+
+/*! Home Text - Glow */
+
+.title {
+  text-shadow: 0 0 7px #fff, 0 0 0px #fff, 0 0 21px #001c99, 0 0 20px #001c99,
+    0 0 15px #001c99, 0 0 15px #001c99, 0 0 20px #041669, 0 0 0px #0b1b64;
+}
+
+/*! About Text - Glow */
+
+.about-content a {
+  text-decoration: none;
+  text-shadow: 0 0 7px #fff, 0 0 0px #fff, 0 0 21px #001c99, 0 0 20px #001c99,
+    0 0 15px #001c99, 0 0 15px #001c99, 0 0 20px #041669, 0 0 0px #0b1b64;
+}
+
+/*! Login & Signup */
