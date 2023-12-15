@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AuthModal from "./(Authentication)/AuthModal";
+import AuthModal from "./(Users)/AuthModal";
 
 export default function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);

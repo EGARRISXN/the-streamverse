@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Roboto_Condensed } from "next/font/google";
 import NavBar from "@/components/NavBar";
-import SearchBar from "@/components/(Movies)/SearchBar";
+import SearchBar from "@/components/(Movies)/MovieSearchBar";
 
 const roboto = Roboto_Condensed({ subsets: ["latin"] });
 

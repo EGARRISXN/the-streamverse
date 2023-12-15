@@ -1,11 +1,9 @@
 import Image from "next/image";
 
-//! Update this to hide API key
-// API_KEY = "93d064eaaeea0b2a09e2e20af37a5993";
-
 async function getMovie(movieId) {
+  const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=93d064eaaeea0b2a09e2e20af37a5993`
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
   );
   return await res.json();
 }
