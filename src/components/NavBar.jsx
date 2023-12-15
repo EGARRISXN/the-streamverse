@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AuthModal from "./AuthModal";
+import AuthModal from "./(Authentication)/AuthModal";
 
 export default function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -12,7 +12,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="x">
+    <nav className="lg:px-4">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <Link href="/">
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -28,11 +28,12 @@ export default function NavBar() {
             </span>
           </div>
         </Link>
+
         <button
           onClick={toggleDropdown}
           data-collapse-toggle="navbar-dropdown"
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white bg-purple-500 rounded-lg md:hidden hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white bg-purple-500 rounded-lg lg:hidden hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 "
           aria-controls="navbar-dropdown"
           aria-expanded={isDropdownOpen}
         >
@@ -54,7 +55,7 @@ export default function NavBar() {
           </svg>
         </button>
         <div
-          className={`w-full md:block md:w-auto ${
+          className={`w-full lg:block md:w-auto ${
             isDropdownOpen ? "block" : "hidden"
           }`}
           id="navbar-dropdown"

@@ -72,7 +72,7 @@ export default function AuthModal() {
         id="auth-modal"
         tabIndex="-1"
         aria-hidden="true"
-        className="fixed inset-0 z-50 flex items-center max-h-full overflow-y-auto justify-center"
+        className="fixed inset-0 z-50 flex items-center max-h-full bg-gray-900/80 overflow-y-auto justify-center"
       >
         <div className="relative w-full max-w-sm rounded-lg shadow-lg">
           {/* Modal content */}

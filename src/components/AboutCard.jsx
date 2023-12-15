@@ -3,18 +3,26 @@ import { FaSquareGithub, FaLinkedin } from "react-icons/fa6";
 
 const AboutCard = ({ headshot, name, subtitle, ghLink, liLink, bio }) => {
   return (
-    <div className="w-[325px] m-4 p-4">
-      <div className="bg-white rounded-lg overflow-hidden flex items-center text-center content-center justify-around flex-col shadow-md">
-        <Image
-          src={headshot}
-          alt={name}
-          className="w-full h-60 object-cover object-center"
-        />
-        <div className="p-4 h-48 w-full flex flex-col">
-          <h2 className="text-xl font-semibold mb-2">{name}</h2>
-          <p className="text-gray-600 font-semibold mb-2">{subtitle}</p>
-          <p className="text-gray-800 mb-2">{bio}</p>
-          <div className="mx-[5px] md:mx-[15px] flex flex-row justify-evenly">
+    <div className="max-w-md m-2 p-2 bg-white rounded-lg overflow-hidden shadow-lg">
+      <div className="flex">
+        <div className="w-2/5">
+          <div className="overflow-hidden">
+            <Image
+              src={headshot}
+              alt={name}
+              className="w-full h-52 object-cover object-center rounded-md"
+            />
+          </div>
+        </div>
+        <div className="w-3/5 pt-4 px-2 sm:px-4">
+          <h2 className="text-gray-700 text-lg font-medium my-1 sm:my-2">
+            {name}
+          </h2>
+          <p className="text-gray-900 text-md font-semibold my-1 sm:my-2">
+            {subtitle}
+          </p>
+          <p className="text-gray-700 text-sm my-1 sm:my-2">{bio}</p>
+          <div className="flex flex-row space-x-4">
             <a
               href={ghLink}
               target="_blank"
