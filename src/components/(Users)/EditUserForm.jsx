@@ -18,11 +18,11 @@ export default function EditUserForm({
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -36,8 +36,8 @@ export default function EditUserForm({
         }),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to update user");
+      if (!response.ok) {
+        throw new Error("Failed to update user.");
       }
 
       router.refresh();
@@ -53,43 +53,48 @@ export default function EditUserForm({
       className="flex flex-col gap-4 w-fit justify-center items-center mx-auto"
     >
       <input
-        onChange={(e) => setNewName(e.target.value)}
+        onChange={(event) => setNewName(event.target.value)}
         value={newName}
         className="h-10 w-60 sm:w-96 text-sm text-gray-600 font-medium rounded-lg placeholder-gray-400 outline-none px-2 py-1 border-2 focus:ring-2 focus:ring-purple-400"
-        type="name"
+        type="text"
         placeholder="Name"
+        id="name"
       />
 
       <input
-        onChange={(e) => setNewUsername(e.target.value)}
+        onChange={(event) => setNewUsername(event.target.value)}
         value={newUsername}
         className="h-10 w-60 sm:w-96 text-sm text-gray-600 font-medium rounded-lg placeholder-gray-400 outline-none px-2 py-1 border-2 focus:ring-2 focus:ring-purple-400"
         type="text"
         placeholder="Username"
+        id="username"
       />
 
       <input
-        onChange={(e) => setNewPassword(e.target.value)}
+        onChange={(event) => setNewPassword(event.target.value)}
         value={newPassword}
         className="h-10 w-60 sm:w-96 text-sm text-gray-600 font-medium rounded-lg placeholder-gray-400 outline-none px-2 py-1 border-2 focus:ring-2 focus:ring-purple-400"
         type="password"
         placeholder="Password"
+        id="password"
       />
 
       <input
-        onChange={(e) => setNewBio(e.target.value)}
+        onChange={(event) => setNewBio(event.target.value)}
         value={newBio}
         className="h-10 w-60 sm:w-96 text-sm text-gray-600 font-medium rounded-lg placeholder-gray-400 outline-none px-2 py-1 border-2 focus:ring-2 focus:ring-purple-400"
         type="text"
         placeholder="Bio"
+        id="bio"
       />
 
       <input
-        onChange={(e) => setNewGenre(e.target.value)}
+        onChange={(event) => setNewGenre(event.target.value)}
         value={newGenre}
         className="h-10 w-60 sm:w-96 text-sm text-gray-600 font-medium rounded-lg placeholder-gray-400 outline-none px-2 py-1 border-2 focus:ring-2 focus:ring-purple-400"
         type="text"
         placeholder="Genre"
+        id="genre"
       />
 
       <button className="text-gray-500 bg-purple-300 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium px-2 py-1 hover:text-gray-900 focus:z-10 w-full">

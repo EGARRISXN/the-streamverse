@@ -1,14 +1,29 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AuthModal from "./(Users)/AuthModal";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+// import AuthModal from "@/components/(Authentication)/AuthModal";
 
-export default function NavBar() {
+const NavBar = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [authPage, setAuthPage] = useState("signin");
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/");
+  };
+
+  const handleAuthLinkClick = (page) => {
+    setAuthPage(page);
+    router.push(`/${page}`);
   };
 
   return (
@@ -55,44 +70,66 @@ export default function NavBar() {
           </svg>
         </button>
         <div
-          className={`w-full lg:block md:w-auto ${
+          className={`w-full lg:block lg:w-auto ${
             isDropdownOpen ? "block" : "hidden"
           }`}
           id="navbar-dropdown"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col p-4 lg:p-0 mt-4 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0">
             <li>
               <Link href="/">
-                <div
-                  className="block py-2 px-3 text-white bg-transparent hover:text-gray-300 md:p-0 "
-                  aria-current="page"
-                >
+                <div className="block py-2 px-3 text-white hover:text-gray-300 lg:p-0">
                   Home
                 </div>
               </Link>
             </li>
             <li>
               <Link href="/about">
-                <div className="block py-2 px-3 text-white bg-transparent hover:text-gray-300 md:p-0 ">
+                <div className="block py-2 px-3 text-white hover:text-gray-300 lg:p-0">
                   About
                 </div>
               </Link>
             </li>
             <li>
               <Link href="/movies">
-                <div className="block py-2 px-3 text-white bg-transparent hover:text-gray-300 md:p-0 ">
+                <div className="block py-2 px-3 text-white hover:text-gray-300 lg:p-0">
                   Movies
                 </div>
               </Link>
             </li>
             <li>
-              <div className="block py-2 px-3 md:p-0 ">
-                <AuthModal />
-              </div>
+              {!session ? (
+                <>
+                  <Link href={`/${authPage}`}>
+                    <div
+                      className="block py-2 px-3 cursor-pointer text-white hover:text-gray-300 lg:p-0"
+                      onClick={() =>
+                        handleAuthLinkClick(
+                          authPage === "signin" ? "signup" : "signin"
+                        )
+                      }
+                    >
+                      {authPage === "signin" ? "Sign In" : "Sign Up"}
+                    </div>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  {session.user?.username}
+                  <button
+                    onClick={handleSignOut}
+                    className="block py-2 px-3 text-white hover:text-gray-300 lg:p-0"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              )}
             </li>
           </ul>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default NavBar;

@@ -1,54 +1,44 @@
-import Link from "next/link";
-import RemoveUserButton from "./RemoveUserButton";
-import { HiPencilAlt } from "react-icons/hi";
-
-const getUsers = async () => {
+async function fetchUsers() {
   try {
-    const res = await fetch("http://localhost:3000/api/users", {
+    const response = await fetch("http://localhost:3000/api/users", {
       cache: "no-store",
     });
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error("Failed to fetch users");
     }
-
-    return res.json();
+    return response.json();
   } catch (error) {
     console.log("Error loading users: ", error);
     return { users: [] };
   }
-};
+}
 
-export default async function UsersList() {
-  const { users } = await getUsers();
+const UsersList = async () => {
+  const data = await fetchUsers();
 
-  if (!users || !users.length) {
-    return <div>No users found</div>;
+  if (!data || !data.users || !Array.isArray(data.users)) {
+    console.log("No valid users found");
+    return <div>No valid users found</div>;
   }
 
   return (
-    <>
-      {users.map((u) => (
-        <div
-          key={u._id}
-          className="p-4 border-2 rounded-lg text-center border-purle-300 m-4 mx-auto flex flex-col justify-between h-72 w-72 text-gray-300"
-        >
-          <div className="border-2">
-            <h2 className="font-bold text-2xl">{u.username}</h2>
-          </div>
-
-          <div className="border-2 h-full w-full justify-center flex flex-col">
-            {u.bio}
-          </div>
-
-          <div className="mt-4 flex justify-between">
-            <Link href={`/editUser/${u._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
-            <RemoveUserButton id={u._id} />
-          </div>
-        </div>
-      ))}
-    </>
+    <div className="flex justify-center items-center p-2">
+      <div className="bg-white rounded shadow-md p-4 w-full max-w-lg h-full">
+        <h2 className="text-2xl text-center font-bold mb-4">Users</h2>
+        <hr className="mb-4" />
+        <ul>
+          {data.users.map((user) => (
+            <li key={user._id} className="mb-2">
+              <h3 className="text-lg font-semibold">{user.username}</h3>
+              <p className="text-gray-600">{user.genre}</p>
+              <p className="text-gray-600">{user.bio}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
-}
+};
+
+export default UsersList;

@@ -4,7 +4,7 @@ export default function loading() {
   return (
     <div className="flex justify-center">
       <Image
-        className="h-96"
+        className="h-auto w-auto"
         src="spinner.svg"
         width={200}
         height={200}
