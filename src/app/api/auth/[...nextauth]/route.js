@@ -5,7 +5,7 @@ import connect from "@/utilities/db";
 import bcrypt from "bcryptjs";
 
 export const authConfig = {
-  site: process.env.NEXTAUTH_URL || "http://localhost:3000",
+  site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -47,12 +47,8 @@ export const authConfig = {
       },
     }),
   ],
-  databases:
-    process.env.MONGODB_URI ||
-    "mongodb+srv://egarrisxn:mystery1@thestreamverse.zqhfsdk.mongodb.net/db",
-  secret:
-    process.env.NEXTAUTH_SECRET ||
-    "481GWrlQXYXBDfdglcymEVetZ7/Gp9kiE31wXdkKY/k=",
+  databases: process.env.MONGODB_URI,
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     jwt: true,
   },

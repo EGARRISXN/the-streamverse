@@ -7,10 +7,7 @@ const connect = async () => {
   }
 
   try {
-    await mongoose.connect(
-      process.env.MONGODB_URI ||
-        "mongodb+srv://egarrisxn:mystery1@thestreamverse.zqhfsdk.mongodb.net/db"
-    );
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected");
   } catch (error) {
     console.log("Error connecting to MongoDB: ", error);
